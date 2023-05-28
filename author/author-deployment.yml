@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: author-deployment
+  labels:
+    app: author
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: author
+  template:
+    metadata:
+      labels:
+        app: author
+    spec:
+      containers:
+        - name: author
+          image: author:1.0v
+          env:
+            - name: BOOK_URL
+              value: "book-clusterip"
+
